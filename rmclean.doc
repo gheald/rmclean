@@ -1,0 +1,60 @@
+%N rmclean
+%D Run RM-CLEAN on a set of 'dirty' rm-cubes.
+%P ghh
+%: analysis
+%B
+        RMCLEAN reads in dirty Q and U cubes, generates rmtf based on
+        the frequencies given in an ascii file, and cleans the rm
+        spectra following the algorithm given by Brentjens (2007).
+        The output cubes contain the clean model components, the
+        CLEANed rm spectra, and the residuals.
+        The input cubes must be reordered with mode=312, and the
+        output cubes will have the same ordering and thus must be
+        reordered after being written to disk. A script (runrmclean.py)
+        is provided to put everything together into one step.
+%A inq
+        Cube containing dirty Q spectra. No default.
+%A inu
+        Cube containing dirty U spectra. No default.
+%A freq
+        Ascii file containing the observed frequencies. No default.
+        The file should contain one frequency per line, in Hertz.
+        Comment lines aren't allowed.
+%A weight
+        Ascii file containing the weights. Default is equal weights.
+        The file should contain one weight per line, in the same
+        order as is given in the frequency file, and the same length.
+        Comment lines aren't allowed.
+%A nmax
+        Maximum number of iterations per pixel. Default 1000.
+%A gain
+        CLEAN loop gain. Default 0.1.
+%A cutoff
+        CLEAN cutoff (in P, without bias correction). Default 0.
+%A fwhm
+        FWHM of restoring RM beam, in rad/m^2. Default 0==auto.
+%A method
+        Method for determining clean component locations. Choices are:
+        'peakp': Search P spectrum for largest value
+        'xcorr': Perform the cross-correlation of the RMTF and
+                 the P spectrum at each iteration, and find the
+                 location of the largest value in the amplitude
+                 of the cross-correlation spectrum.
+        The cross-correlation option is slower, but should be better,
+        especially in low signal-to-noise situations, and is default.
+%A outq
+        Output (CLEANed) Q cube. Default 'Qclean'.
+%A outu
+        Output (CLEANed) U cube. Default 'Uclean'.
+%A modq
+        Model (CLEANed) Q cube. Default 'Qmodel'.
+%A modu
+        Model (CLEANed) U cube. Default 'Umodel'.
+%A resq
+	Residual Q cube. Default 'Qresid'.
+%A resu
+	Residual U cube. Default 'Uresid'.
+%A ni
+        Number of CLEAN iterations per pixel. Default 'niters'.
+%A derot
+        Derotate the spectrum? 0=no, 1=yes. Default 1.

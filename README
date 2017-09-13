@@ -1,0 +1,24 @@
+RMCLEAN v1.8
+Written by George Heald ( heald@astron.nl )
+29 March 2013
+
+This directory contains the miriad task rmclean, which cleans rm spectra
+contained in (RA,DEC,RM) cubes. The input cubes must be reordered such
+that the RM axis is first. This can be done by hand before running the
+task itself, or automatically using the included runrmclean.py script.
+For help with runrmclean.py, type 'runrmclean.py -h'
+
+The input parameters are described in rmclean.doc, which can be placed in
+$MIRDOC for use within miriad's help system.
+
+The code (rmclean.for) compiles both under darwin_x86 and linux64. It
+probably works on other systems but I haven't tested that.
+
+To get the task to work, these steps were sufficient for me:
+1.  Run miriad task 'mirtree' in $HOME to generate a source tree
+2a. Place rmclean.for in $HOME/miriad/prog
+2b. Place rmclean.h in $HOME/miriad/inc
+3a. Determine your fortran compiler (e.g. f77)
+3b. Type 'make FC=your_fortran_compiler' in $HOME/miriad/prog
+4.  The executable is now in $HOME/miriad/<arch>/bin
+    This directory can be added to your $PATH
